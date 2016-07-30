@@ -7,12 +7,23 @@ $.fn.burlySlide = function( options ) {
       dev_mode: false
     }, options );
 
-    var sliderLength = $(this).children().length - 1,
-        imageWidth =  $('img:first-child', this).width();
+    var slider = $(this),
+        sliderLength = $(this).children().length,
+        sliderIndexed = sliderLength - 1,
+        imageWidth =  $('img:first-child', this).width(),
+        sliderTrackWidth = imageWidth * (sliderLength + 1);
     if(settings.dev_mode === true){
-      console.log("%c%s","font-size: 18px;","Burly Slider Loaded");
-      console.log('Number Of Items: '+ sliderLength + '\nWidth Of Items: ' + imageWidth);
+      console.log('%c%s','font-size: 18px;','Burly Slider Loaded');
+      console.log('Number Of Items: '+ sliderLength + '\nSlider Length Indexed: ' + sliderIndexed + '\nWidth Of Items: ' + imageWidth);
     }
+    function initalize(){
+      slider.addClass('burlySlider');
+        $( 'img',slider).wrapAll( '<div class="burlyTrack"/>');
+      if(settings.dev_mode === true){
+        console.log('%c%s','font-size: 18px;','\nSlider Initalized');
+      }
+    }
+
     function textAnimate(){
       $('.sliderText').addClass('load');
       setTimeout(function () {
@@ -24,6 +35,8 @@ $.fn.burlySlide = function( options ) {
         textAnimate();
       });
     }
+
+    initalize();
 
     $('.sliderNext').click(function(){
       // textAnimate();

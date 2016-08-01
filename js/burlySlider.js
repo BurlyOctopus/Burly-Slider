@@ -3,7 +3,8 @@ $.fn.burlySlide = function( options ) {
       // These are the defaults.
       fade_content: true,
       vertical_scroll: false,
-      dev_mode: false
+      dev_mode: false,
+      textVersion: false
     }, options );
 
     var slider = $(this),
@@ -17,7 +18,7 @@ $.fn.burlySlide = function( options ) {
       $( 'img',slider).wrapAll( '<div class="burlyTrack"/>');
       slider.append('<div class="cycleBtn next" />');
       slider.append('<div class="cycleBtn prev" />');
-      var sliderTrack = $('.burlyTrack'),
+      var sliderTrack = $('.burlyTrack', slider),
           imageWidth = $('.burlyTrack:first-child img', slider).width(),
           imageHeight = $('.burlyTrack:first-child img', slider).height();
       $('.burlyTrack img:first-child').addClass('active');

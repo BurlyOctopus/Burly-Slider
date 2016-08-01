@@ -3,6 +3,34 @@ body{
   color:#543A3A;
   background-color:#FAFAFA;
 }
+.horizontal img{
+  display:inline-block;
+}
+.vertical img{
+  display:block;
+}
+
+.burlySlider{
+  overflow: hidden;
+  position: relative;
+}
+.burlyTrack{
+  transition: all ease .5s;
+}
+.cycleBtn{
+  font-size:25px;
+   top: calc(50% - 1em);
+   position:absolute;
+   width:2em;
+   height:2em;
+   background:#ebebeb;
+}
+.cycleBtn.next{
+  right:1em;
+}
+.cycleBtn.prev{
+  left:1em;
+}
 .flexWrapper{
   display:flex;
   align-items:center;

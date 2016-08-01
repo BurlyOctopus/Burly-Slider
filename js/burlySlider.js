@@ -32,28 +32,36 @@ $.fn.burlySlide = function( options ) {
         sliderTrack.addClass('horizontal');
         sliderTrack.width(sliderLength * imageWidth);
       }
+
+      function sliderCycle(button){
+        var currentIndex = $('.active', sliderTrack).index();
+        $('.active', sliderTrack).removeClass('active');
+        if($(button).hasClass('next')){
+          if(currentIndex === sliderIndexed){
+            currentIndex = 0;
+          } else{
+            currentIndex = currentIndex + 1;
+          }
+        } else{
+          if(currentIndex === 0){
+            currentIndex = sliderIndexed;
+          } else{
+            currentIndex = currentIndex - 1;
+          }
+        }
+        $('img',sliderTrack).eq(currentIndex).addClass('active');
+        if(settings.vertical_scroll === true){
+          sliderTrack.css({'transform':'translatey(-' + (imageHeight * currentIndex) + 'px)'});
+        } else{
+          sliderTrack.css({'transform':'translatex(-' + (imageWidth * currentIndex) + 'px)'});
+        }
+        if(settings.dev_mode === true){
+          console.log('%c%s','font-size: 14px;','\nCycle Fired');
+          console.log('Slide Index: ' + currentIndex);
+        }
+      }
       $('.cycleBtn').click(function(){
-          var currentIndex = $('.active', sliderTrack).index();
-          $('.active', sliderTrack).removeClass('active');
-          if($(this).hasClass('next')){
-            if(currentIndex === sliderIndexed){
-              currentIndex = 0;
-            } else{
-              currentIndex = currentIndex + 1;
-            }
-          } else{
-            if(currentIndex === 0){
-              currentIndex = sliderIndexed;
-            } else{
-              currentIndex = currentIndex - 1;
-            }
-          }
-          $('img',sliderTrack).eq(currentIndex).addClass('active');
-          if(settings.vertical_scroll === true){
-            sliderTrack.css({'transform':'translatey(-' + (imageHeight * currentIndex) + 'px)'});
-          } else{
-            sliderTrack.css({'transform':'translatex(-' + (imageWidth * currentIndex) + 'px)'});
-          }
+        sliderCycle($(this));
       });
 
    return this;

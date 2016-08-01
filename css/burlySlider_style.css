@@ -3,13 +3,19 @@ body{
   color:#543A3A;
   background-color:#FAFAFA;
 }
-img{
+.horizontal img{
   display:inline-block;
+}
+.vertical img{
+  display:block;
 }
 
 .burlySlider{
   overflow: hidden;
   position: relative;
+}
+.burlyTrack{
+  transition: all ease .5s;
 }
 .cycleBtn{
   font-size:25px;
